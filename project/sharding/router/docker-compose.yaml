@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+
+  mongos_router1:
+    container_name: mongos_router1
+    image: mongo
+    command: mongos --configdb configReplSet/configsvr1:27017,configsvr2:27017,configsvr3:27017 --bind_ip_all --port 27017
+    ports:
+      - 50000:27017
+    volumes:
+      - ./scripts:/scripts  

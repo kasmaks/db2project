@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+
+  shard1svr1:
+    container_name: shard1svr1
+    image: mongo
+    command: mongod --shardsvr --replSet shard1ReplSet --port 27017
+    ports:
+      - 40001:27017
+    volumes:
+      - ./scripts:/scripts
+
+  shard1svr2:
+    container_name: shard1svr2
+    image: mongo
+    command: mongod --shardsvr --replSet shard1ReplSet --port 27017
+    ports:
+      - 40002:27017
+    volumes:
+      - ./scripts:/scripts
+
+  shard1svr3:
+    container_name: shard1svr3
+    image: mongo
+    command: mongod --shardsvr --replSet shard1ReplSet --port 27017
+    ports:
+      - 40003:27017
+    volumes:
+      - ./scripts:/scripts
+
+volumes:
+  shard1svr1: {}
+  shard1svr2: {}
+  shard1svr3: {}

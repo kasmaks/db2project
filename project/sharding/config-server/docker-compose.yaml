@@ -1,0 +1,34 @@
+version: '3.7'
+
+services:
+
+  configsvr1:
+    container_name: configsvr1
+    image: mongo
+    command: mongod --configsvr --replSet configReplSet --port 27017
+    ports:
+      - 33001:27017
+    volumes:
+      - ./scripts:/scripts
+
+  configsvr2:
+    container_name: configsvr2
+    image: mongo
+    command: mongod --configsvr --replSet configReplSet --port 27017
+    ports:
+      - 33002:27017
+    volumes:
+      - ./scripts:/scripts
+    links:
+      - configsvr1
+
+  configsvr3:
+    container_name: configsvr3
+    image: mongo
+    command: mongod --configsvr --replSet configReplSet --port 27017
+    ports:
+      - 33003:27017
+    volumes:
+      - ./scripts:/scripts
+    links:
+      - configsvr2
